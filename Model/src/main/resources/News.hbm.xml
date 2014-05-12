@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.pojos" auto-import="false">
+
+    <class name="News" table="T_NEWS" lazy="false">
+        <id name="id" type="int" column="F_ID">
+            <generator class="sequence">
+                <param name="sequence">T_NEWS_SEQ</param>
+            </generator>
+        </id>
+
+        <many-to-one name="category" class="Category" fetch="select">
+            <column name="F_CAT_ID" not-null="true"/>
+        </many-to-one>
+
+        <property name="name" column="F_NAME" type="string"/>
+        <property name="date" column="F_DATE" type="string"/>
+        <property name="time" column="F_TIME" type="string"/>
+        <property name="annotation" column="F_ANNOTATION" type="org.hibernate.type.MaterializedClobType"/>
+        <property name="maintext" column="F_MAINTEXT" type="org.hibernate.type.MaterializedClobType"/>
+
+        <many-to-one name="userInfo" class="UserInfo" fetch="select" lazy="false">
+            <column name="F_USER_ID" not-null="true"/>
+        </many-to-one>
+
+
+    </class>
+</hibernate-mapping>

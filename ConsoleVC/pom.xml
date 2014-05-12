@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>NewsFeed</artifactId>
+        <groupId>pvt</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ConsoleVC</artifactId>
+    <packaging>jar</packaging>
+    <!--<packaging>bundle</packaging>-->
+
+    <name>ConsoleVC</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--_________________________ Dependecies ___________________________-->
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Services</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--_______________ test__________________-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--____________________________ Build ______________________________-->
+    <build>
+        <finalName>${project.parent.artifactId}Console</finalName>
+        <plugins>
+            <!--______________maven-dependency-plugin________________________-->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <!--<outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--______________maven-jar-plugin________________________-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>console.ConsoleVC</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--<plugin>
+            &lt;!&ndash; NOTE: We don't need a groupId specification because the group is
+                 org.apache.maven.plugins ...which is assumed by default.
+             &ndash;&gt;
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+                <resources>
+                    <resource>${project.build.directory}/lib</resource>
+                </resources>
+            </configuration>
+            </plugin>-->
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.pojos" auto-import="false">
+
+    <class name="UserRole" table="T_ROLE">
+        <id name="id" type="int" column="F_ID">
+            <generator class="sequence">
+                <param name="sequence">T_ROLE_SEQ</param>
+            </generator>
+        </id>
+
+        <property name="name" column="F_NAME" type="string"/>
+
+        <set name="userSet" table="T_USER_ROLE" fetch="select" inverse="true" lazy="true">
+            <key column="F_ROLE_ID" not-null="true"/>
+            <many-to-many class="User">
+                <column name="F_USER_ID" not-null="true"/>
+            </many-to-many>
+        </set>
+
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.pojos" auto-import="false">
+
+    <class name="User" table="T_USER" lazy="true">
+        <id name="id" type="int" column="F_ID">
+            <generator class="sequence">
+                <param name="sequence">T_USER_SEQ</param>
+            </generator>
+        </id>
+
+        <property name="email" column="F_EMAIL" type="string" not-null="true"/>
+        <property name="pass" column="F_PASS" type="string"/>
+
+        <!--<property name="name" column="F_NAME" type="string"/>
+        <property name="surname" column="F_SURNAME" type="string"/>-->
+
+        <one-to-one name="userInfo" class="UserInfo"  fetch="select" cascade="save-update,delete"/>
+
+        <set name="userRoleSet" table="T_USER_ROLE" fetch="select" inverse="false" lazy="true" cascade="all">
+            <key column="F_USER_ID" not-null="true"/>
+            <many-to-many class="UserRole">
+                <column name="F_ROLE_ID" not-null="true"/>
+            </many-to-many>
+        </set>
+
+        <!--<property name="count" formula="count(*) from T_USER" type="integer" access="field"/>-->
+
+    </class>
+</hibernate-mapping>

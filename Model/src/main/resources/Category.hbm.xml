@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.pojos" auto-import="false">
+
+    <class name="Category" table="T_CATEGORY" lazy="false">
+        <id name="id" type="int" column="F_ID">
+            <generator class="sequence">
+                <param name="sequence">T_CATEGORY_SEQ</param>
+            </generator>
+        </id>
+
+        <property name="name" column="F_NAME" type="string"/>
+
+        <bag name="newsList" table="T_NEWS" fetch="select" inverse="true" lazy="true" cascade="save-update,delete-orphan">
+            <key column="F_CAT_ID" not-null="true"/>
+            <one-to-many class="News"/>
+        </bag>
+
+    </class>
+</hibernate-mapping>
