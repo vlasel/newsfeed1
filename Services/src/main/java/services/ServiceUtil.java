@@ -62,6 +62,16 @@ public class ServiceUtil {
 
 //################################# get Page Data #####################################
 
+    //_______________________ get data for siteController page News (universal) for all news__________________
+
+    public Map<String,Object> getPageData_News (Map<String,String> ordersMap, Integer pageNumber, Integer maxResults) throws DaoException {
+        Map<String,Object> result = new HashMap<>();
+
+
+        return result;
+    }
+
+
     //_______________________ get data for page view All (default)__________________
 
     public Map<String,Object> getPageData_ViewAll(Map<String,String> ordersMap, Integer pageNumber, Integer maxResults) throws DaoException{
