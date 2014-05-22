@@ -10,28 +10,6 @@
 
     <name>NewsFeed</name>
 
-    <!--<profiles>
-        <profile>
-            <id>web</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <modules>
-                <module>WebVC</module>
-                <module>Services</module>
-                <module>Model</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>console</id>
-            <modules>
-                <module>Services</module>
-                <module>Model</module>
-                <module>ConsoleVC</module>
-            </modules>
-        </profile>
-    </profiles>-->
-
     <modules>
         <module>WebVC</module>
         <module>Services</module>
@@ -41,6 +19,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <aspect.version>1.8.0</aspect.version>
+        <spring.version>4.0.3.RELEASE</spring.version>
     </properties>
 
     <!--_________________________ Repositories __________________________-->
@@ -61,6 +41,9 @@
             <url>http://maven-us.nuxeo.org/nexus/content/groups/public</url>
         </repository>
     </repositories>
+
+
+
 
     <!--_________________________ dependencyManagement __________________________-->
     <dependencyManagement>
@@ -140,6 +123,46 @@
                 <artifactId>jstl</artifactId>
                 <version>1.2</version>
             </dependency>
+
+            <!--___________________ Spring________________________-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--___________________ Aspect OP___________________________-->
+            <dependency>
+                <groupId>aspectj</groupId>
+                <artifactId>aspectjlib</artifactId>
+                <version>1.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspect.version}</version>
+            </dependency>
+            <!--_____________________AOP dependency__________________-->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.1</version>
+            </dependency>
+
             <!--__________________ test ____________________-->
             <dependency>
                 <groupId>junit</groupId>
@@ -149,6 +172,9 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+
+
 
     <build>
         <!--_________________________ plugin Management __________________________-->
